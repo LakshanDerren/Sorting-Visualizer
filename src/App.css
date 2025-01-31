@@ -13,19 +13,33 @@
     @media (width<40em) {
         padding: 1.5em;
     }
+    & .loading{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:rgb(15, 36, 29);
+        color: rgb(131, 225, 194);
+        transition: all 1s;
+        & p{
+            padding: .5em;
+            transition: all 1s;
+        }
+    }
     & .btnbar{
         display: flex;
         justify-content: space-around;
         background-color: rgb(83, 200, 161);
         padding: 1%;
+        transition: all 1s;
         @media (width<40em) {
             flex-direction: column;
             gap: .2em;
         }
         & button{
             background-color:rgb(15, 36, 29);
-            color: white;
-            padding: 1em 3em;
+            color: rgb(131, 225, 194);
+            padding: .6em 2em;
             border: 0;
             outline: 0;
             border-radius: 1em;
@@ -37,6 +51,7 @@
         padding: 2em 3em;
         display: flex;
         justify-content: start;
+        transition: all 1s;
         align-items: end;
         background-color: rgb(131, 225, 194);
         @media (width<40em) {
