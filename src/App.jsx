@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { isSortingAC } from './redux/actions';
+import { loadingInverse,addArr,updateArray } from './features/arraySlide';
 
 function App() {
-  const [array, setArray] = useState([]);
-  // const [isSorting,setIsSorting] = useState(false)
-  const isSorting = useSelector((state)=>state.isSort)
-  const setIsSorting = () => {useDispatch(isSortingAC())}
+  const dispatch = useDispatch()
+  const {isSorting, array} = useSelector((state)=>state.array)
+  const setIsSorting = (UU) => {dispatch(loadingInverse(UU))}
+  const setArray = (newArr) => {dispatch(addArr(newArr))}
 
   const resetArray = () => {
     const tempArray = []
@@ -51,12 +51,9 @@ function App() {
       returnArry.push(arr2[j]);
       j++
     }
-    await new Promise((resolve)=>{setTimeout(resolve,300)})
-    setArray((preArr)=>[
-      ...preArr.slice(0,start),
-      ...returnArry,
-      ...preArr.slice(end)
-    ])
+    await new Promise((resolve)=>{setTimeout(resolve,50)})
+
+    dispatch(updateArray({ start, end, returnArry }));
     return returnArry;
   }
 
@@ -76,7 +73,7 @@ function App() {
         <button disabled={isSorting} onClick={()=>resetArray()}>New</button>
         <button disabled={isSorting} onClick={()=>handleMergeSort()}>MergeSort</button>
         <button disabled={isSorting} >kandy</button>
-        <button disabled={isSorting} style={{backgroundColor:"red"}}>click</button>
+        <button disabled={isSorting} >click</button>
         <button disabled={isSorting}>thisWay</button>
       </div>
       <div className="graph">
